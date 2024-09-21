@@ -26,6 +26,24 @@
 </table>
 
 
+<!-- Form -->
+
+<form [formGroup]="loginF" (submit)="onSubmit()">
+  <h3>Form login</h3>
+
+  <input type="text" formControlName="email" placeholder="email"><br />
+  <input type="password" formControlName="password" current-password placeholder="password"><br />
+
+  <!-- Show error messages for password field -->
+  <div *ngIf="loginF.get('password')?.dirty && loginF.get('password')?.errors">
+    <small *ngIf="loginF.get('password')?.errors?.['required']">Password không được để trống</small>
+    <small *ngIf="loginF.get('password')?.errors?.['minlength']">Password tối thiểu là 3 ký tự</small>
+    <small *ngIf="loginF.get('password')?.errors?.['maxlength']">Password tối đa là 16 ký tự</small>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
 <app-footer />
 
 <!-- Thuoc tinh: [] -->

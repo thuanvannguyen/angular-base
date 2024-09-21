@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -27,5 +28,21 @@ export class AppComponent {
   isActive: boolean = true;
   sayHello() {
     this.isActive = !this.isActive;
+  }
+
+  /// Form initialization with validation
+  loginF: FormGroup = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(16),
+    ]),
+  });
+
+  // Handle form submission
+  onSubmit() {
+    if (this.loginF.invalid) return;
+    console.log(this.loginF.value);
   }
 }
