@@ -1,7 +1,32 @@
 <app-header />
 
 <app-main />
-<h1>{{title}}</h1>
+<h1 [class.active]="isActive" *ngIf="isActive">{{title}}</h1>
+<input type="text" [(ngModel)]="title">
+
 <button (click)="sayHello()">Click me!</button>
+<p [innerHTML]="content"></p>
+
+<!-- <img src="{{img_link}}" alt="case 1"> -->
+<img src="{{img_link}}" alt="case 1" width="100px">
+<img [src]="img_link" alt="case 2" width="100px">
+
+<h2>Danh sách</h2>
+<table>
+  <tr>
+    <th>STT</th>
+    <th>Tên</th>
+    <th>Tuổi</th>
+  </tr>
+  <tr *ngFor="let std of students; let index = index">
+    <td>{{index + 1}}</td>
+    <td>{{std.name}}</td>
+    <td>{{std.age}}</td>
+  </tr>
+</table>
+
 
 <app-footer />
+
+<!-- Thuoc tinh: [] -->
+<!-- Su kien: () -->
